@@ -1,0 +1,20 @@
+server:
+  port: 80
+spring:
+  application:
+    name: order
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/car?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    register-with-eureka: true #不将自己的实例注册到 Eureka Server
+    fetch-registry: true #不从 Eureka Server 中获取 Eureka 的注册表信息
+    service-url:
+     defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/
+  instance:
+    hostname: order

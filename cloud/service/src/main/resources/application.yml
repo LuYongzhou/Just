@@ -1,0 +1,17 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: service
+
+eureka:
+  client:
+    register-with-eureka: false #将自己的实例注册到 Eureka Server
+    fetch-registry: false #不从 Eureka Server 中获取 Eureka 的注册表信息
+    service-url:
+     defaultZone: http://127.0.0.1:8001/eureka/
+#    eureka-server-u-r-l-context: http://127.0.0.1:${server.port}/eureka/
+  instance:
+    hostname: eureka-server
+  server:
+    enable-self-preservation: true # 开启自我保护机制，默认也是开启的

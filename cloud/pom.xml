@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lu</groupId>
+    <artifactId>cloud</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>payment</module>
+        <module>service</module>
+        <module>order</module>
+        <module>service002</module>
+        <module>payment002</module>
+        <module>common</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+        <apache.commons.lang3.version>3.11</apache.commons.lang3.version>
+        <alibaba.fastjson.verson>1.2.76</alibaba.fastjson.verson>
+        <projectlombok.version>1.18.12</projectlombok.version>
+        <apollo.version>1.7.0</apollo.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
+        <commons-codec.version>1.14</commons-codec.version>
+        <apache.httpcomponents.httpcore.version>4.4.13</apache.httpcomponents.httpcore.version>
+        <apache.httpcomponents.httpclient.version>4.5.5</apache.httpcomponents.httpclient.version>
+        <thoughtworks.xstream.version>1.4.17</thoughtworks.xstream.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-digester.version>2.1</commons-digester.version>
+        <net.sf.saxon.version>8.7</net.sf.saxon.version>
+        <xerces.xerces.version>2.11.0</xerces.xerces.version>
+        <xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version>
+        <apache.curator-framework.version>4.0.1</apache.curator-framework.version>
+        <apache.curator-recipes.version>4.0.1</apache.curator-recipes.version>
+        <xalan.xalan.version>2.7.0</xalan.xalan.version>
+        <spring.boot.log4j.version>1.3.8.RELEASE</spring.boot.log4j.version>
+        <spring.boot.log4j2.version>2.17.1</spring.boot.log4j2.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <logback-ext-spring.version>0.1.5</logback-ext-spring.version>
+        <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
+        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+        <jackson.version>2.9.10</jackson.version>
+        <jackson.databind.version>2.9.10.6</jackson.databind.version>
+        <gexin-rp-sdk-base.version>4.0.0.22</gexin-rp-sdk-base.version>
+        <gexin-rp-sdk-http.version>4.0.1.17</gexin-rp-sdk-http.version>
+        <gexin-rp-sdk-template.version>4.0.0.16</gexin-rp-sdk-template.version>
+        <protobuf-java.version>3.11.4</protobuf-java.version>
+        <googlecode.libphonenumber.version>2.82</googlecode.libphonenumber.version>
+        <skywalking.version>8.8.0</skywalking.version>
+        <dom4j.version>1.6.1-hudson-3</dom4j.version>
+        <mail.version>1.4</mail.version>
+        <spring-kafka.version>2.7.0</spring-kafka.version>
+        <github-pagehelper.version>5.1.4</github-pagehelper.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- apollo -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba.fastjson.verson}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${projectlombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>${commons-httpclient.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${apache.httpcomponents.httpcore.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache.httpcomponents.httpclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>${thoughtworks.xstream.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-digester</groupId>
+                <artifactId>commons-digester</artifactId>
+                <version>${commons-digester.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.saxon</groupId>
+                <artifactId>saxon</artifactId>
+                <version>${net.sf.saxon.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xerces</artifactId>
+                <version>${xerces.xerces.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>${xerces.xercesImpl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${apache.curator-framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${apache.curator-recipes.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xalan</groupId>
+                <artifactId>xalan</artifactId>
+                <version>${xalan.xalan.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j</artifactId>
+                <version>${spring.boot.log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.logback-extensions</groupId>
+                <artifactId>logback-ext-spring</artifactId>
+                <version>${logback-ext-spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+
+            <!-- Swagger start -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gexin.platform</groupId>
+                <artifactId>gexin-rp-sdk-base</artifactId>
+                <version>${gexin-rp-sdk-base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gexin.platform</groupId>
+                <artifactId>gexin-rp-sdk-http</artifactId>
+                <version>${gexin-rp-sdk-http.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gexin.platform</groupId>
+                <artifactId>gexin-rp-sdk-template</artifactId>
+                <version>${gexin-rp-sdk-template.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf-java.version}</version>
+            </dependency>
+
+            <!-- Swagger end -->
+
+            <dependency>
+                <groupId>com.googlecode.libphonenumber</groupId>
+                <artifactId>geocoder</artifactId>
+                <version>${googlecode.libphonenumber.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jvnet.hudson.dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${spring-kafka.version}</version>
+            </dependency>
+
+            <!-- pageHelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${github-pagehelper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${spring.boot.log4j2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${spring.boot.log4j2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${spring.boot.log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.10</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.21</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+</project>

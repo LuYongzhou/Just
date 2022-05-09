@@ -1,0 +1,22 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: server-payment
+  datasource:
+    url: jdbc:mysql://47.95.121.157:3306/EDEN?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    password: lu199804064511
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    register-with-eureka: true #不将自己的实例注册到 Eureka Server
+    fetch-registry: true #不从 Eureka Server 中获取 Eureka 的注册表信息
+    service-url:
+     defaultZone: http://127.0.0.1:8001/eureka/
+  instance:
+    instance-id: payment001
+    prefer-ip-address: true
+mybatis-plus:
+  mapper-locations: classpath:com/lu/payment/mapper/*.xml
