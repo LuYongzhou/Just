@@ -7,6 +7,8 @@ import com.lu.common.dto.UserPageGetDto;
 import com.lu.common.dto.UserUpdateDto;
 import com.lu.common.exception.ErrorCode;
 import com.lu.payment.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
@@ -27,16 +29,14 @@ import java.util.List;
  * @Date 2022/4/23
  */
 @RestController
+@Api(tags = "用户")
 public class UserController {
 
     @Autowired
-    UserService payService;
-
-    @Value("${server.port}")
-    private String servicePort;
-
+    private UserService payService;
 
     @PostMapping(value = "user/insert")
+    @ApiOperation("新增用户信息")
     CommonRes insert(@RequestBody UserInsertDto userInsertDto){
         if (StringUtils.isEmpty(userInsertDto.getMobileNo()) || StringUtils.isEmpty(userInsertDto.getPassword())){
             return CommonRes.FAIL(ErrorCode.PARAMS_NOT_FULL);
@@ -53,6 +53,7 @@ public class UserController {
     };
 
     @GetMapping(value = "user/delete")
+    @ApiOperation("删除用户信息")
     CommonRes delete(@RequestParam("id") Long id){
         try {
             payService.delete(id);
@@ -63,6 +64,7 @@ public class UserController {
     };
 
     @PostMapping(value = "user/update")
+    @ApiOperation("更新用户信息")
     CommonRes update(@RequestBody UserUpdateDto userUpdateDto){
         try {
             payService.update(userUpdateDto);
@@ -73,6 +75,7 @@ public class UserController {
     };
 
     @PostMapping(value = "user/pageGet")
+    @ApiOperation("查询用户信息")
     CommonRes<List<UserDto>> pageGet(@RequestBody UserPageGetDto userPageGetDto){
          List<UserDto> userDtos = payService.pageGet(userPageGetDto);
         if (CollectionUtils.isEmpty(userDtos)){

@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> pageGet(UserPageGetDto userPageGetDto) {
+        userPageGetDto.setDeleteStatus(2);
         log.info("UserServiceImpl-delete-入参：userPageGetDto{}",userPageGetDto);
         List<UserEntity> userEntityList = userMapper.pageGet(userPageGetDto);
         log.info("UserServiceImpl-delete-出参：userEntityList{}",userEntityList);
