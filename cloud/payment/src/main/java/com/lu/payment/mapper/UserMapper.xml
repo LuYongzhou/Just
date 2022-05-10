@@ -4,6 +4,24 @@
 
 <mapper namespace="com.lu.payment.mapper.UserMapper">
 
+    <resultMap id="UserMapper" type="com.lu.common.entity.UserEntity">
+        <id column="TU_ID" property="id" jdbcType="BIGINT" />
+        <id column="TU_ACCESS_NAME" property="accessName" jdbcType="VARCHAR" />
+        <result column="TU_USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="TU_DESCRIBE" property="describe" jdbcType="VARCHAR" />
+        <result column="TU_MOBILE_NO" property="mobileNo" jdbcType="VARCHAR" />
+        <result column="TU_E_MAIL" property="email" jdbcType="VARCHAR" />
+        <result column="TU_PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="TU_PASSWORD_ENABLE" property="passwordEnable" jdbcType="INTEGER" />
+        <result column="TU_REMARK" property="remark" jdbcType="VARCHAR" />
+        <result column="TU_ENABLE" property="enable" jdbcType="INTEGER" />
+        <result column="TU_OPERATE_USER" property="operateUser" jdbcType="VARCHAR" />
+        <result column="DELETE_STATUS" property="deleteStatus" jdbcType="INTEGER" />
+        <result column="TU_CREATE_TIME" property="createTime" jdbcType="DATE" />
+        <result column="TU_UPDATE_TIME" property="modifyTime" jdbcType="DATE" />
+
+    </resultMap>
+
     <insert id="insert" parameterType="com.lu.common.dto.UserInsertDto">
         insert into USER
         <trim suffix=")" prefix="(" suffixOverrides="," >
@@ -89,4 +107,92 @@
         </trim>
 
     </insert>
+    <update id="delete" parameterType="long">
+           update USER
+    set DELETE_STATUS = 2
+    where TU_ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="update" parameterType="com.lu.common.dto.UserUpdateDto">
+        update USER
+        <set >
+            <if test="accessName != null and accessName !='' ">
+                TU_ACCESS_NAME = #{accessName,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null and userName !='' ">
+                TU_USER_NAME = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null and describe !='' ">
+                TU_DESCRIBE = #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="mobileNo != null and mobileNo !='' ">
+                TU_MOBILE_NO = #{mobileNo,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email !='' ">
+                TU_E_MAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password !='' ">
+                TU_PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="passwordEnable != null ">
+                TU_PASSWORD_ENABLE = #{passwordEnable,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null and remark !='' ">
+                TU_REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="enable != null and enable !='' ">
+                TU_ENABLE = #{enable,jdbcType=VARCHAR},
+            </if>
+            TU_UPDATE_TIME = NOW(),
+            <if test="operateUser != null and operateUser !='' ">
+                TU_OPERATE_USER = #{operateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteStatus != null">
+                DELETE_STATUS = #{deleteStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where TU_ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="pageGet" parameterType="com.lu.common.dto.UserPageGetDto" resultMap="UserMapper">
+        select * from USER
+        <where>
+            <if test="id != null">
+                and TU_ID = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="accessName != null and accessName !='' ">
+                and TU_ACCESS_NAME = #{accessName,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null and userName !='' ">
+                and TU_USER_NAME = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="describe != null and describe !='' ">
+                and TU_DESCRIBE = #{describe,jdbcType=VARCHAR}
+            </if>
+            <if test="mobileNo != null and mobileNo !='' ">
+                and TU_MOBILE_NO = #{mobileNo,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null and email !='' ">
+                and TU_E_MAIL = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null and password !='' ">
+                and TU_PASSWORD = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="passwordEnable != null ">
+                and TU_PASSWORD_ENABLE = #{passwordEnable,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null and remark !='' ">
+                and TU_REMARK = #{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="enable != null">
+                and TU_ENABLE = #{enable,jdbcType=INTEGER}
+            </if>
+            <if test="operateUser != null and operateUser !='' ">
+                and TU_OPERATE_USER = #{operateUser,jdbcType=VARCHAR}
+            </if>
+            <if test="deleteStatus != null">
+                and DELETE_STATUS = #{deleteStatus,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 </mapper>

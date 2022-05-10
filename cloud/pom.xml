@@ -13,8 +13,6 @@
         <module>payment</module>
         <module>service</module>
         <module>order</module>
-        <module>service002</module>
-        <module>payment002</module>
         <module>common</module>
     </modules>
 
@@ -212,11 +210,11 @@
                 <version>${xalan.xalan.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-log4j</artifactId>
-                <version>${spring.boot.log4j.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-log4j</artifactId>-->
+<!--                <version>${spring.boot.log4j.version}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>org.logback-extensions</groupId>
