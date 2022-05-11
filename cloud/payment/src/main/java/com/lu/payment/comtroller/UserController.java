@@ -1,6 +1,7 @@
 package com.lu.payment.comtroller;
 
 import com.lu.common.constant.CommonRes;
+import com.lu.common.dto.CarInsertDto;
 import com.lu.common.dto.UserDto;
 import com.lu.common.dto.UserInsertDto;
 import com.lu.common.dto.UserPageGetDto;
@@ -30,14 +31,14 @@ import java.util.List;
  */
 @RestController
 @Api(tags = "用户")
-public class UserController {
+public class UserController{
 
     @Autowired
     private UserService payService;
 
-    @PostMapping(value = "user/insert")
     @ApiOperation("新增用户信息")
-    CommonRes insert(@RequestBody UserInsertDto userInsertDto){
+    @PostMapping(value = "user/insert")
+    public CommonRes insert(@RequestBody UserInsertDto userInsertDto){
         if (StringUtils.isEmpty(userInsertDto.getMobileNo()) || StringUtils.isEmpty(userInsertDto.getPassword())){
             return CommonRes.FAIL(ErrorCode.PARAMS_NOT_FULL);
         }
@@ -52,37 +53,37 @@ public class UserController {
         return CommonRes.SUCCESS("新增成功");
     };
 
-    @GetMapping(value = "user/delete")
-    @ApiOperation("删除用户信息")
-    CommonRes delete(@RequestParam("id") Long id){
-        try {
-            payService.delete(id);
-        } catch (Exception e) {
-            return CommonRes.FAIL(ErrorCode.SQL_EXCEPTION);
-        }
-        return CommonRes.SUCCESS("删除成功");
-    };
-
-    @PostMapping(value = "user/update")
-    @ApiOperation("更新用户信息")
-    CommonRes update(@RequestBody UserUpdateDto userUpdateDto){
-        try {
-            payService.update(userUpdateDto);
-        } catch (Exception e) {
-            return CommonRes.FAIL(ErrorCode.SQL_EXCEPTION);
-        }
-        return CommonRes.SUCCESS("更新成功");
-    };
-
-    @PostMapping(value = "user/pageGet")
-    @ApiOperation("查询用户信息")
-    CommonRes<List<UserDto>> pageGet(@RequestBody UserPageGetDto userPageGetDto){
-         List<UserDto> userDtos = payService.pageGet(userPageGetDto);
-        if (CollectionUtils.isEmpty(userDtos)){
-            return CommonRes.SUCCESS(null);
-        }
-        return CommonRes.SUCCESS(userDtos);
-    };
+//    @GetMapping(value = "user/delete")
+//    @ApiOperation("删除用户信息")
+//    CommonRes delete(@RequestParam("id") Long id){
+//        try {
+//            payService.delete(id);
+//        } catch (Exception e) {
+//            return CommonRes.FAIL(ErrorCode.SQL_EXCEPTION);
+//        }
+//        return CommonRes.SUCCESS("删除成功");
+//    };
+//
+//    @PostMapping(value = "user/update")
+//    @ApiOperation("更新用户信息")
+//    CommonRes update(@RequestBody UserUpdateDto userUpdateDto){
+//        try {
+//            payService.update(userUpdateDto);
+//        } catch (Exception e) {
+//            return CommonRes.FAIL(ErrorCode.SQL_EXCEPTION);
+//        }
+//        return CommonRes.SUCCESS("更新成功");
+//    };
+//
+//    @PostMapping(value = "user/pageGet")
+//    @ApiOperation("查询用户信息")
+//    CommonRes<List<UserDto>> pageGet(@RequestBody UserPageGetDto userPageGetDto){
+//         List<UserDto> userDtos = payService.pageGet(userPageGetDto);
+//        if (CollectionUtils.isEmpty(userDtos)){
+//            return CommonRes.SUCCESS(null);
+//        }
+//        return CommonRes.SUCCESS(userDtos);
+//    };
 
 
 

@@ -1,32 +1,25 @@
 package com.lu.order.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.lu.common.constant.CommonRes;
-import com.lu.common.dto.CarInsertDto;
+import com.lu.common.dto.UserInsertDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.annotation.Resource;
 
 /**
  * @Author 卢泳州
  * @Description
  * @Date 2022/5/3
  */
-@RestController
-public class PayController {
 
-    @Resource
-    private RestTemplate restTemplate;
+@FeignClient(value = "SERVER-PAYMENT")
+@Component
+public interface PayController {
 
-    private static String url = "http://server-payment";
-
-    @PostMapping("car/insert")
-    CommonRes carInsert(CarInsertDto carInsertDto){
-
-        CommonRes commonRes = restTemplate.postForObject(url+"/car/insert",JSON.toJSONString(carInsertDto),CommonRes.class);
-        return commonRes;
-    }
+    @PostMapping(value = "user/insert")
+    CommonRes insert(@RequestBody UserInsertDto carInsertDto);
 
 }
