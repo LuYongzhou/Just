@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(basePackages = {"com.lu.order.*"})
+@EnableFeignClients()
 public class OrderMain {
     public static void main(String[] args) {
         SpringApplication.run(OrderMain.class,args);
